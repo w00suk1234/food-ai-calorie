@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.urls import path
-from foodai_backend.views import PredictView
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/predict/', PredictView.as_view()),
+    path('', include('foodai_app.urls')),  #  이 줄이 반드시 있어야 함
 ]
