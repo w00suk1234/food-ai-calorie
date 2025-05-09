@@ -59,7 +59,7 @@ export default function FileUpload() {
         <div className="bg-white/10 border border-white/30 p-5 rounded-xl shadow-inner w-full max-w-xs mx-auto">
           {!preview ? (
             <div className="h-[250px] flex items-center justify-center text-gray-300 italic">
-              🍱 여기에 음식 이미지를 업로드하면 분석 결과가 나와요
+              음식 이미지를 업로드하면 분석 결과가 나와요
             </div>
           ) : (
             <img
@@ -70,14 +70,30 @@ export default function FileUpload() {
           )}
 
           {result && (
-            <div className="mt-4 text-left text-sm space-y-1 bg-black/70 p-4 rounded-lg">
-              <p><strong>🍽 음식:</strong> {result.food}</p>
-              <p><strong>🔥 칼로리:</strong> {result.calories} kcal</p>
-              <p><strong>🥔 탄수화물:</strong> {result.carbs}g</p>
-              <p><strong>🍗 단백질:</strong> {result.protein}g</p>
-              <p><strong>🧈 지방:</strong> {result.fat}g</p>
-              <p className="mt-2 font-medium text-green-300">{result.message}</p>
-            </div>
+            <>
+              {/*  분석 완료 강조 스타일 */}
+              <div className="mt-4 mb-2 w-fit mx-auto bg-gradient-to-r from-purple-100 to-purple-300 text-purple-800 text-sm font-semibold px-4 py-1 rounded-full shadow-sm">
+                 분석 완료
+              </div>
+
+
+
+              <div className="text-left text-sm space-y-1 bg-black/70 p-4 rounded-lg">
+                <p><strong>🍽 음식:</strong> {result.food}</p>
+                <p><strong>🔥 칼로리:</strong> {result.calories} kcal</p>
+                <p><strong>🥔 탄수화물:</strong> {result.carbs}g</p>
+                <p><strong>🍗 단백질:</strong> {result.protein}g</p>
+                <p><strong>🧈 지방:</strong> {result.fat}g</p>
+
+                {/*  AI 설명 말풍선 */}
+                {result.message && (
+                  <div className="relative mt-4 p-3 bg-green-800/30 border border-green-400/40 rounded-lg text-green-100 italic">
+                    <div className="absolute -top-2 left-4 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-green-800/30"></div>
+                    {result.message}
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
 
